@@ -8,6 +8,17 @@ function onRequest () {
 
 const path = '/user/:name'
 
+function render(message) {
+  const document = `
+    <html>
+      <title>Home</title>
+      <h1>${message}</h1>
+
+    </html>`
+  return document 
+}
+
+
 const page =  `
   <html>
     <title>Home</title>
@@ -15,13 +26,12 @@ const page =  `
   
   </html>`
 
-
-
-app.get(
+  app.get(
     path, // route to listen on
     (request, respons) => {
       const message = `Welcome ${request.params.name}`
-      respons.send(message)
+      const page = render(message)
+      respons.send(page)
     } // callback runs when the route is requested
   )
 
